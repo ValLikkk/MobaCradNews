@@ -1,0 +1,25 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<MobСardNews.Models.News>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "News";
+}
+<h2>Новости</h2>
+<table class="table">
+        <tr>
+                <th>Игра</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+                <td>
+                        @Html.DisplayFor(modelItem =>item.Game)
+                </td>
+        </tr>
+        }
+
+</table>
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
