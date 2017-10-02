@@ -11,9 +11,14 @@ namespace MobСardNews.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Вывод новостей
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult Index(int? page)
         {
-            int pageSize = 3;
+            int pageSize = 6;//Количество новостей на странице
             int pageNumber = (page ?? 1);
             var context = new ApplicationDbContext();
             return View((context.News.ToList()).ToPagedList(pageNumber, pageSize));

@@ -14,11 +14,11 @@
         {
         <tr>
                 <td>
-                        @Html.DisplayFor(modelItem =>item.Game)
+                        @Html.ActionLink()
+                       <a href="">@Html.DisplayFor(modelItem => item.Game)</a>
                 </td>
         </tr>
         }
-
 </table>
 Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
 
