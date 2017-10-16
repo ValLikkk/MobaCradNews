@@ -1,11 +1,21 @@
 ﻿@using PagedList.Mvc;
 @model PagedList.IPagedList<MobСardNews.Models.News>
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
 @{
-    ViewBag.Title = "News";
+    ViewBag.Title = "Home";
 }
 <h2>Новости</h2>
-<table class="table">
+
+
+@*<div>
+                <img height="160" width="320" src="~/Content/0eEqJMFUwbU.jpg" />
+        </div>*@
+<table id="NewsBlock" class="table">
         <tr>
                 <th>Игра</th>
         </tr>
@@ -14,11 +24,11 @@
         {
         <tr>
                 <td>
-                        @Html.DisplayFor(modelItem =>item.Game)
+                        @*<a>@Html.DisplayForModel()</a>*@
+                        @Html.ActionLink(item.Game,"NewsBlock", new { id = item.Id })
                 </td>
         </tr>
         }
-
 </table>
 Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
 
