@@ -22,15 +22,13 @@
 
                         <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                        @*<li>@Ajax.ActionLink("Dota2", "Index", new AjaxOptions {UpdateTargetId = "NewsBlock", InsertionMode = InsertionMode.Replace,HttpMethod = "GET" })</li>*@
-                                        <li>@Ajax.BeginForm("")</li>
-                                        <li>@Html.ActionLink("Dota2","Index", "Home")</li>
-                                        <li>@Html.ActionLink("Artifact", "Index", "Home")</li>
-                                        <li>@Html.ActionLink("Gwent", "Index", "Home")</li>
-                                        <li>@Html.ActionLink("HearStone", "Index", "Home")</li>
-                                        @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                                                <li>@Html.ActionLink("About", "About", "Home")</li>
-                                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                                        <li>@Html.ActionLink("AllNews", "Index")</li>
+                                        <li>@Html.ActionLink("Dota2", "Index",new { tag = "Dota2"})</li>
+                                        <li>@Html.ActionLink("HearStone", "Index", new { tag = "HearStone" })</li>
+                                        <li>@Html.ActionLink("Artifact", "Index", new { tag = "Artifact" })</li>
+                                        <li>@Html.ActionLink("Gwent", "Index", new { tag = "Gwent" })</li>
+                                                @*<li>@Html.ActionLink("About", "About", "Home")</li>
+                                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>**@
                                 </ul>
                                 @Html.Partial("_LoginPartial")
                         </div>

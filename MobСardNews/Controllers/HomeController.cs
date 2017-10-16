@@ -16,22 +16,32 @@ namespace MobСardNews.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string tag)
         {
             int pageSize = 6;//Количество новостей на странице
             int pageNumber = (page ?? 1);
-            ////var context = new ApplicationDbContext();
-            //return View((context.News.ToList()).ToPagedList(pageNumber, pageSize));
-            using (var context = new ApplicationDbContext())
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    context.News.Add(new News {Game = "Gwent" + i,Text = "Харстоун гавно,гвент лучше.Харта мани уходите отсюда" });
-                }
 
-                context.SaveChanges();
-                return View((context.News.ToList()).ToPagedList(pageNumber, pageSize));
+            var context = new ApplicationDbContext();
+            var content = (context.News.ToList());
+            if (tag != null)
+            {
+                content = context.News.Where(allNews => allNews.Game == tag).ToList();
+                if (content.Count() == 0)
+                    return HttpNotFound();
             }
+            return View(content.ToPagedList(pageNumber, pageSize));
+            //using (var context = new ApplicationDbContext())
+            //{
+            //    //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [NEWS]");
+            //    for (int i = 0; i < 2; i++)
+            //    {
+            //        context.News.Add(new News { Game = "HearStone", Text = "не думай" + i});
+            //        context.News.Add(new News { Game = "Artifact", Text = "где патч габен" + i });
+            //    }
+
+            //    context.SaveChanges();
+            //    return View((context.News.ToList()).ToPagedList(pageNumber, pageSize));
+            //}
 
             //using (var context = new ApplicationDbContext())
             //{
@@ -51,16 +61,16 @@ namespace MobСardNews.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult SearchByTag(string tag)
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var newsByTag = context.News.Where(allNews => allNews.tag == tag).ToList();
-                if (newsByTag.Count() == 0)
-                    return HttpNotFound();
-                return PartialView(newsByTag);
-            }
-        }
+        //[HttpGet]
+        //public ActionResult SearchByTag(string tag)
+        //{
+        //    using (var context = new ApplicationDbContext())
+        //    {
+        //        var newsByTag = context.News.Where(allNews => allNews.Game == tag).ToList();
+        //        if (newsByTag.Count() == 0)
+        //            return HttpNotFound();
+        //        return PartialView(newsByTag);
+        //    }
+        //}
     }
 }

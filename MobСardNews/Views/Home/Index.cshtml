@@ -25,7 +25,7 @@
         <tr>
                 <td>
                         @*<a>@Html.DisplayForModel()</a>*@
-                        @Html.ActionLink("Новость про говно 2","NewsBlock", new { id = item.Id })
+                        @Html.ActionLink(item.Game,"NewsBlock", new { id = item.Id })
                 </td>
         </tr>
         }
