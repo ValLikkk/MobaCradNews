@@ -1,0 +1,39 @@
+﻿@model MobСardNews.Models.News
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+        <h4>News</h4>
+        <hr />
+        <dl class="dl-horizontal">
+                <dt>
+                        @Html.DisplayNameFor(model => model.Text)
+                </dt>
+
+                <dd>
+                        @Html.DisplayFor(model => model.Text)
+                </dd>
+
+                <dt>
+                        @Html.DisplayNameFor(model => model.tag)
+                </dt>
+
+                <dd>
+                        @Html.DisplayFor(model => model.tag)
+                </dd>
+
+                <dt>
+                        @Html.DisplayNameFor(model => model.Game)
+                </dt>
+
+                <dd>
+                        @Html.DisplayFor(model => model.Game)
+                </dd>
+
+        </dl>
+</div>
+<p>
+   @*     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")*@
+</p>
