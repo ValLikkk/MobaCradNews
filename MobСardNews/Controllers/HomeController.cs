@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using MobСardNews.Models;
 using PagedList.Mvc;
 using PagedList;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MobСardNews.Controllers
 {
@@ -20,9 +22,16 @@ namespace MobСardNews.Controllers
         {
             int pageSize = 6;//Количество новостей на странице
             int pageNumber = (page ?? 1);
-
+           
             var context = new ApplicationDbContext();
             var content = (context.News.ToList());
+            if(User.Identity.IsAuthenticated)
+            {
+                var news = context.News.FirstOrDefault(x => x.Id == 1); 
+                var comment = new Comment() { Date = DateTime.UtcNow, NewsId = news, Text = "Фёдор", Userid = context.Users.FirstOrDefault(x => x.Id == User.Identity.GetUserId() )};
+                context.Comments.Add(comment);
+                context.SaveChanges();
+            }           
             if (tag != null)
             {
                 content = context.News.Where(allNews => allNews.Game == tag).ToList();

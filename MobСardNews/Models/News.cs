@@ -11,5 +11,6 @@ namespace MobСardNews.Models
         public string Text { get; set; }
         public string tag { get; set; }
         public string Game { get; set; }
+        public List<Comment> Comennts { get; set; }
     }
 }

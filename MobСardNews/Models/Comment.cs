@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace MobСardNews.Models
 {
     public class Comment
     {
-        int Id { get; set; }
-        News NewsId { get; set; }
-        int UserId { get; set; }
-        string Text { get; set; }
-        DateTime Date { get; set; }
-        int Likes { get; set; }
-        int Dislikes { get; set; }
+        public int Id { get; set; }
+        public News NewsId { get; set; }
+        public ApplicationUser Userid { get; set; }
+        public string Text { get; set; }
+        public DateTime Date { get; set; }
+        public int Likes { get; set; }
+        public int Dislikes { get; set; }
     }
 }
