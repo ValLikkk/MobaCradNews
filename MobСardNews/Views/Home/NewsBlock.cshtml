@@ -33,7 +33,28 @@
 
         </dl>
 </div>
+<div>
+        @foreach(var item)
+        {
+            Html.ActionLink()
+        }
+        @*@using (Html.BeginForm())
+        {
+        @foreach (var item in Model.Comennts)
+        {
+        @Html.ValidationSummary(true)
+        <div class="addcommentbox">
+                <h2> Add Comment </h2>
+                @Html.TextAreaFor(model => item.Text)
+                <div class="ErrorMessage">
+                        @Html.ValidationMessageFor(model => item.Text)
+                </div>
+                <input id="addComment" type="button" onclick="" value="Add" />
+        </div>
+        }*@
+        }
+</div>
 <p>
-   @*     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")*@
+        @*     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Back to List", "Index")*@
 </p>

@@ -15,7 +15,7 @@ namespace MobСardNews.Models
     {
         public int Id { get; set; }
         public News NewsId { get; set; }
-        public ApplicationUser Userid { get; set; }
+        public Profile ProfileId { get; set; }
         public string Text { get; set; }
         public DateTime Date { get; set; }
         public int Likes { get; set; }
