@@ -16,6 +16,7 @@ namespace MobСardNews.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+                string test;
                 var user = context.Profiles.FirstOrDefault(x => x.UserId == User.Identity.GetUserId());
                 var addComment = new Comment { Date = DateTime.UtcNow ,NewsId = comment.NewsId,ProfileId  = user,Text = comment.Text};
             }
