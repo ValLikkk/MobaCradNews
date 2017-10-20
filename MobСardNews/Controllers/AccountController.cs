@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MobСardNews.Models;
+using System.Data.Entity.Validation;
 
 namespace MobСardNews.Controllers
 {
@@ -157,12 +158,14 @@ namespace MobСardNews.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    using (var context = new ApplicationDbContext())
-                    {
-                        context.Profiles.Add(profile);
-                        context.SaveChanges();
-                    }
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        using (var context = new NewsDbContext())
+                        {
+                            context.Profiles.Add(profile);
+                            context.SaveChanges();
+                        }
+
+                   
                         // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

@@ -14,9 +14,8 @@ namespace MobСardNews.Controllers
         [HttpPost]
         public ActionResult CreateComment(Comment comment)
         {
-            using (var context = new ApplicationDbContext())
+            using (var context = new NewsDbContext())
             {
-                string test;
                 var user = context.Profiles.FirstOrDefault(x => x.UserId == User.Identity.GetUserId());
                 var addComment = new Comment { Date = DateTime.UtcNow ,NewsId = comment.NewsId,ProfileId  = user,Text = comment.Text};
             }

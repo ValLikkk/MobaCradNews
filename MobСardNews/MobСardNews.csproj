@@ -202,20 +202,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetUser.cs" />
-    <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Db\AspNetUser.cs" />
+    <Compile Include="Models\Db\Comment.cs" />
+    <Compile Include="Models\Db\ApplicationDbContext.cs" />
+    <Compile Include="Models\Db\Mappings\Applicant\ApplicantAspNetUserConfigurations.cs" />
+    <Compile Include="Models\Db\Mappings\Applicant\ApplicantCommentConfiguration.cs" />
+    <Compile Include="Models\Db\Mappings\Applicant\ApplicantNewsConfiguration.cs" />
+    <Compile Include="Models\Db\Mappings\Applicant\ApplicantProfileConfiguration.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\News.cs" />
-    <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\Db\News.cs" />
+    <Compile Include="Models\Db\NewsDbContext.cs" />
+    <Compile Include="Models\Db\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Web.mdf" />
-    <Content Include="App_Data\Web_log.ldf">
-      <DependentUpon>Web.mdf</DependentUpon>
+    <Content Include="App_Data\datamdf.mdf" />
+    <Content Include="App_Data\datamdf_log.ldf">
+      <DependentUpon>datamdf.mdf</DependentUpon>
     </Content>
     <Content Include="Content\0eEqJMFUwbU.jpg" />
     <Content Include="Content\bootstrap.css" />

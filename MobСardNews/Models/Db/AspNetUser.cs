@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MobСardNews.Models
 {
-    public class AspNetUser : ApplicationUser
+    public class AspNetUser : IdentityUser
     {
         public AspNetUser()
         {

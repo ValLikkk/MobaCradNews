@@ -23,7 +23,7 @@ namespace MobСardNews.Controllers
             int pageSize = 6;//Количество новостей на странице
             int pageNumber = (page ?? 1);
 
-            var context = new ApplicationDbContext();
+            var context = new NewsDb();
             var content = (context.News.ToList());
             //if (User.Identity.IsAuthenticated)
             //{
@@ -42,7 +42,7 @@ namespace MobСardNews.Controllers
                     return HttpNotFound();
             }
             return View(content.ToPagedList(pageNumber, pageSize));
-            //using (var context = new ApplicationDbContext())
+            //using (context = new ApplicationDbContext())
             //{
             //    //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [NEWS]");
             //    for (int i = 0; i < 2; i++)
@@ -66,7 +66,7 @@ namespace MobСardNews.Controllers
 
         public virtual ActionResult NewsBlock(int? id)
         {
-            using (var context = new ApplicationDbContext())
+            using (var context = new NewsDb())
             {
                 News model = context.News.FirstOrDefault(news => news.Id == id);
                 return View(model);

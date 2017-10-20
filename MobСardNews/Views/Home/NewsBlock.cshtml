@@ -34,9 +34,10 @@
         </dl>
 </div>
 <div>
-        @foreach(var item)
+        @foreach(var item in Model.Comennts)
         {
-            Html.ActionLink()
+            <a>@item.Text</a>
+                //Html.ActionLink()
         }
         @*@using (Html.BeginForm())
         {
