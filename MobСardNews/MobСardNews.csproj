@@ -201,11 +201,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710230759326_Comment.cs" />
+    <Compile Include="Migrations\201710230759326_Comment.Designer.cs">
+      <DependentUpon>201710230759326_Comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710230808202_CommentInNews.cs" />
+    <Compile Include="Migrations\201710230808202_CommentInNews.Designer.cs">
+      <DependentUpon>201710230808202_CommentInNews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710230906573_stringIdComment.cs" />
+    <Compile Include="Migrations\201710230906573_stringIdComment.Designer.cs">
+      <DependentUpon>201710230906573_stringIdComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\RestModels\AddComment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -275,7 +289,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\NewsBlock.cshtml" />
-    <Content Include="Views\Home\SearchByTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Shared\Location\" />
@@ -294,6 +307,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710230759326_Comment.resx">
+      <DependentUpon>201710230759326_Comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710230808202_CommentInNews.resx">
+      <DependentUpon>201710230808202_CommentInNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710230906573_stringIdComment.resx">
+      <DependentUpon>201710230906573_stringIdComment.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

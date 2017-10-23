@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using MobСardNews.Models;
 using PagedList.Mvc;
 using PagedList;
-
+using System.Data;
+using MobСardNews.Models.RestModels;
+using Microsoft.AspNet.Identity;
 namespace MobСardNews.Controllers
 {
     public class HomeController : Controller
@@ -30,13 +32,15 @@ namespace MobСardNews.Controllers
                     return HttpNotFound();
             }
             return View(content.ToPagedList(pageNumber, pageSize));
-            //using (var context = new ApplicationDbContext())
+            //using (context = new ApplicationDbContext())
             //{
             //    //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [NEWS]");
             //    for (int i = 0; i < 2; i++)
             //    {
-            //        context.News.Add(new News { Game = "HearStone", Text = "не думай" + i});
-            //        context.News.Add(new News { Game = "Artifact", Text = "где патч габен" + i });
+            //        context.News.Add(new News { Game = "HearStone", Text = "не думай" + i });
+            //        context.News.Add(new News { Game = "Artifact", Text = "где game габен" + i });
+            //        context.News.Add(new News { Game = "Dota2", Text = "где патч габен" + i });
+            //        context.News.Add(new News { Game = "Gwent", Text = "быстро надоедает" + i });
             //    }
 
             //    context.SaveChanges();
@@ -50,6 +54,7 @@ namespace MobСardNews.Controllers
             //    context.SaveChanges();
             //}
         }
+       
 
         public virtual ActionResult NewsBlock(int? id)
         {
@@ -61,16 +66,23 @@ namespace MobСardNews.Controllers
 
         }
 
-        //[HttpGet]
-        //public ActionResult SearchByTag(string tag)
-        //{
-        //    using (var context = new ApplicationDbContext())
-        //    {
-        //        var newsByTag = context.News.Where(allNews => allNews.Game == tag).ToList();
-        //        if (newsByTag.Count() == 0)
-        //            return HttpNotFound();
-        //        return PartialView(newsByTag);
-        //    }
-        //}
+        [HttpPost]
+        public void AddComment(AddComment comment)
+        {
+            DbAddComment(comment);
+        }
+
+        private void DbAddComment(AddComment comment)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var currentNews = context.News.FirstOrDefault(x => x.Id == comment.NewsId);
+                var addComment = new Comment() { Date = DateTime.UtcNow, Text = comment.Text,UserId = User.Identity.GetUserId() };
+                context.
+                currentNews.Comments.Add(addComment);
+                context.News.Add(currentNews);
+                context.SaveChanges();
+            }
+        }
     }
 }

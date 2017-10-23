@@ -33,7 +33,27 @@
 
         </dl>
 </div>
-<p>
+
+<di>    
+        @if (User.Identity.IsAuthenticated)
+        {
+                if(Model.Comments != null)
+                {
+                        foreach (var item in Model.Comments)
+                        {
+                        <a>@item.Text</a>
+                        <a>@item.ApplicationUser.UserName</a>
+                        }
+                }
+               
+                using (Html.BeginForm("AddComment", "Home", FormMethod.Post))
+                {
+                <input type="hidden" value="" name="сomment" />
+                @Html.TextBox("Text", "Введите комментарий");
+                <p><input type="submit" value="Отправить"></p>
+                }
+        }
+
    @*     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")*@
-</p>
+</di>
