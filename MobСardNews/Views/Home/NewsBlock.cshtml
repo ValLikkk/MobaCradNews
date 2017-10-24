@@ -45,9 +45,13 @@
                         <a>@item.ApplicationUser.UserName</a>
                         }
                 }
-               
-                using (Html.BeginForm("AddComment", "Home", FormMethod.Post))
+
+                using (Ajax.BeginForm("AddComment", "Home",new AjaxOptions {HttpMethod ="POST"}))
                 {
+                @section Scripts {
+                        NewsId = @Model.Id;
+                }
+                <div id="results"></div>
                 <input type="hidden" value="" name="сomment" />
                 @Html.TextBox("Text", "Введите комментарий");
                 <p><input type="submit" value="Отправить"></p>

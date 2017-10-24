@@ -36,6 +36,7 @@ namespace MobСardNews.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<News>News { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<News> News { get; set; }
     }
 }

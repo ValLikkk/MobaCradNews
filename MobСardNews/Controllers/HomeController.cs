@@ -54,7 +54,7 @@ namespace MobСardNews.Controllers
             //    context.SaveChanges();
             //}
         }
-       
+
 
         public virtual ActionResult NewsBlock(int? id)
         {
@@ -69,7 +69,7 @@ namespace MobСardNews.Controllers
         [HttpPost]
         public void AddComment(AddComment comment)
         {
-            DbAddComment(comment);
+            DbAddComment(comment);  
         }
 
         private void DbAddComment(AddComment comment)
@@ -77,10 +77,8 @@ namespace MobСardNews.Controllers
             using (var context = new ApplicationDbContext())
             {
                 var currentNews = context.News.FirstOrDefault(x => x.Id == comment.NewsId);
-                var addComment = new Comment() { Date = DateTime.UtcNow, Text = comment.Text,UserId = User.Identity.GetUserId() };
-                context.
-                currentNews.Comments.Add(addComment);
-                context.News.Add(currentNews);
+                var addComment = new Comment() { Date = DateTime.UtcNow, Text = comment.Text,UserId = User.Identity.GetUserId(),NewsId =currentNews};
+                context.Comments.Add(addComment);
                 context.SaveChanges();
             }
         }

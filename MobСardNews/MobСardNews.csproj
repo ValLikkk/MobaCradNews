@@ -201,19 +201,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710230759326_Comment.cs" />
-    <Compile Include="Migrations\201710230759326_Comment.Designer.cs">
-      <DependentUpon>201710230759326_Comment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710230808202_CommentInNews.cs" />
-    <Compile Include="Migrations\201710230808202_CommentInNews.Designer.cs">
-      <DependentUpon>201710230808202_CommentInNews.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710230906573_stringIdComment.cs" />
-    <Compile Include="Migrations\201710230906573_stringIdComment.Designer.cs">
-      <DependentUpon>201710230906573_stringIdComment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -224,10 +211,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Data.mdf" />
-    <Content Include="App_Data\Data_log.ldf">
-      <DependentUpon>Data.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\Fenya.mdf" />
+    <Content Include="App_Data\Fenya_log.ldf" />
     <Content Include="Content\0eEqJMFUwbU.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -307,17 +292,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710230759326_Comment.resx">
-      <DependentUpon>201710230759326_Comment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710230808202_CommentInNews.resx">
-      <DependentUpon>201710230808202_CommentInNews.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710230906573_stringIdComment.resx">
-      <DependentUpon>201710230906573_stringIdComment.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
