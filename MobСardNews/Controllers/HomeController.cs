@@ -7,8 +7,9 @@ using MobСardNews.Models;
 using PagedList.Mvc;
 using PagedList;
 using System.Data;
-using MobСardNews.Models.RestModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
+
 namespace MobСardNews.Controllers
 {
     public class HomeController : Controller
@@ -32,52 +33,62 @@ namespace MobСardNews.Controllers
                     return HttpNotFound();
             }
             return View(content.ToPagedList(pageNumber, pageSize));
+        }           
+
             //using (context = new ApplicationDbContext())
             //{
             //    //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [NEWS]");
-            //    for (int i = 0; i < 2; i++)
-            //    {
-            //        context.News.Add(new News { Game = "HearStone", Text = "не думай" + i });
-            //        context.News.Add(new News { Game = "Artifact", Text = "где game габен" + i });
-            //        context.News.Add(new News { Game = "Dota2", Text = "где патч габен" + i });
-            //        context.News.Add(new News { Game = "Gwent", Text = "быстро надоедает" + i });
-            //    }
+            //    //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [Comments]");
+            //    //for (int i = 0; i < 2; i++)
+            //    //{
+            //    //    context.News.Add(new News
+            //    //    {
+            //    //        Game = "HearStone",
+            //    //        Text = "не думай" + i
+            //    //    });
+            //    //    context.News.Add(new News { Game = "Artifact", Text = "где game габен" + i });
+            //    //    context.News.Add(new News { Game = "Dota2", Text = "где патч габен" + i });
+            //    //    context.News.Add(new News { Game = "Gwent", Text = "быстро надоедает" + i });
+            //    //}
 
-            //    context.SaveChanges();
+            //    //context.SaveChanges();
             //    return View((context.News.ToList()).ToPagedList(pageNumber, pageSize));
-            //}
+                //using (var context = new ApplicationDbContext())
+                //{
 
-            //using (var context = new ApplicationDbContext())
-            //{
-
-            //    context.News.Add(new News { Game = "Dota" });
-            //    context.SaveChanges();
-            //}
-        }
-
-
+                //    context.News.Add(new News { Game = "Dota" });
+                //    context.SaveChanges();
+                //}
         public virtual ActionResult NewsBlock(int? id)
         {
             using (var context = new ApplicationDbContext())
             {
-                News model = context.News.FirstOrDefault(news => news.Id == id);
+                News model = context.News.Include(x => x.Comments.Select(p =>p.ApplicationUser)).FirstOrDefault(news => news.Id == id);
                 return View(model);
             }
 
         }
 
         [HttpPost]
-        public void AddComment(AddComment comment)
-        {
-            DbAddComment(comment);  
-        }
-
-        private void DbAddComment(AddComment comment)
+        public virtual ActionResult AddComment(string comment,int id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var currentNews = context.News.FirstOrDefault(x => x.Id == comment.NewsId);
-                var addComment = new Comment() { Date = DateTime.UtcNow, Text = comment.Text,UserId = User.Identity.GetUserId(),NewsId =currentNews};
+                News model = context.News.FirstOrDefault(news => news.Id == id);
+                DbAddComment(comment, id);
+                return RedirectToAction("NewsBlock", "Home", model);
+            }
+            //return PartialView("NewsBlock");
+        }
+
+        private void DbAddComment(string comment, int newsId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var currentNews = context.News.FirstOrDefault(x => x.Id == newsId);
+                var getUser = User.Identity.GetUserId();
+                var currentUser = context.Users.FirstOrDefault(x =>x.Id == getUser);
+                var addComment = new Comment() { Date = DateTime.UtcNow, Text = comment,News = currentNews,ApplicationUser = currentUser};
                 context.Comments.Add(addComment);
                 context.SaveChanges();
             }

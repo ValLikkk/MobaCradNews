@@ -15,6 +15,10 @@ namespace MobСardNews.Models
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public List<Comment>Comments { get; set; }
+        public ApplicationUser()
+        {
+            Comments = new List<Comment>();
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
